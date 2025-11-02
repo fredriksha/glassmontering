@@ -43,7 +43,7 @@ export async function POST(request: Request) {
           </p>
         </div>
       `,
-      replyTo: epost, // Så svar går til kunden
+      reply_to: epost, // Så svar går til kunden
     })
 
     return NextResponse.json(
