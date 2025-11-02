@@ -61,7 +61,7 @@ export default function Home() {
               className="cursor-pointer"
             >
               <h1 className="text-2xl font-bold text-gray-900">
-                Olas Glassmontering
+                Ulas Glassmontering
               </h1>
             </div>
 
@@ -144,7 +144,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <div className="mb-10">
             <h1 className="text-6xl md:text-7xl font-extrabold text-gray-900 mb-6 tracking-tight">
-              Olas Glassmontering
+              Ulas Glassmontering
             </h1>
             <div className="w-32 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-8 rounded-full"></div>
           </div>
@@ -197,7 +197,7 @@ export default function Home() {
           </div>
           <div className="space-y-6 text-gray-700 leading-relaxed text-lg">
             <p className="text-gray-800">
-              Olas Glassmontering er et erfarent firma som spesialiserer seg på 
+              Ulas Glassmontering er et erfarent firma som spesialiserer seg på 
               montering av glassrekkverk av høyeste kvalitet. Vi har mange års 
               erfaring med montering av glassrekkverk for både private hjem og 
               bedrifter.
@@ -404,7 +404,7 @@ export default function Home() {
               <div className="space-y-3">
                 <p className="flex items-start">
                   <span className="text-blue-400 mr-3">📧</span>
-                  <span>post@olasglassmontering.no</span>
+                  <span>post@ulasglassmontering.no</span>
                 </p>
                 <p className="flex items-start">
                   <span className="text-blue-400 mr-3">📞</span>
@@ -440,7 +440,7 @@ export default function Home() {
           </div>
           <div className="border-t border-gray-800 pt-8 text-center">
             <p className="text-gray-400">
-              &copy; {new Date().getFullYear()} Olas Glassmontering. Alle rettigheter forbeholdt.
+              &copy; {new Date().getFullYear()} Ulas Glassmontering. Alle rettigheter forbeholdt.
             </p>
           </div>
         </div>

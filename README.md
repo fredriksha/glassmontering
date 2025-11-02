@@ -1,6 +1,6 @@
-# Olas Glassmontering
+# Ulas Glassmontering
 
-En enkel og profesjonell nettside for Olas Glassmontering bygget med Next.js og Tailwind CSS.
+En enkel og profesjonell nettside for Ulas Glassmontering bygget med Next.js og Tailwind CSS.
 
 ## Funksjoner
 

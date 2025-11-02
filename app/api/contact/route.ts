@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     const data = await resend.emails.send({
       from: 'Kontaktskjema <onboarding@resend.dev>', // Du må oppdatere denne med din verifiserte domene
       to: ['fredrik.sha@gmail.com'],
-      subject: `Ny henvendelse fra ${navn} - Olas Glassmontering`,
+      subject: `Ny henvendelse fra ${navn} - Ulas Glassmontering`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
           </div>
           
           <p style="color: #64748b; font-size: 12px; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
-            Dette er en automatisk e-post fra kontaktskjemaet på Olas Glassmontering.
+            Dette er en automatisk e-post fra kontaktskjemaet på Ulas Glassmontering.
           </p>
         </div>
       `,
