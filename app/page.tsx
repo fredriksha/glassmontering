@@ -5,10 +5,43 @@ import { useState } from 'react'
 export default function Home() {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setFormSubmitted(true)
+    setIsSubmitting(true)
+    setError(null)
+
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      navn: formData.get('navn'),
+      epost: formData.get('epost'),
+      telefon: formData.get('telefon'),
+      melding: formData.get('melding'),
+    }
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Kunne ikke sende melding')
+      }
+
+      setFormSubmitted(true)
+      e.currentTarget.reset()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Kunne ikke sende melding. Prøv igjen.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const scrollToSection = (id: string) => {
@@ -293,6 +326,11 @@ export default function Home() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="bg-slate-50 rounded-2xl p-8 md:p-12 shadow-lg border border-slate-100 space-y-6">
+              {error && (
+                <div className="bg-red-50 border-2 border-red-200 rounded-xl p-4 text-center">
+                  <p className="text-red-800 font-medium">{error}</p>
+                </div>
+              )}
               <div>
                 <label htmlFor="navn" className="block text-sm font-semibold text-gray-700 mb-3">
                   Navn
@@ -347,9 +385,10 @@ export default function Home() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5"
+                disabled={isSubmitting}
+                className="w-full bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                Send melding
+                {isSubmitting ? 'Sender...' : 'Send melding'}
               </button>
             </form>
           )}
