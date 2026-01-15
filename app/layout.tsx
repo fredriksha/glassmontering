@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Ulas Glassmontering - Profesjonell montering av glassrekkverk',
-  description: 'Ulas Glassmontering leverer høy kvalitet og trygg montering av glassrekkverk for privat- og bedriftskunder.',
+  title: 'Rekkverksmontering - Profesjonell montering av glassrekkverk',
+  description: 'Rekkverksmontering leverer høy kvalitet og trygg montering av glassrekkverk for privat- og bedriftskunder.',
 }
 
 export default function RootLayout({
@@ -14,6 +15,10 @@ export default function RootLayout({
   return (
     <html lang="no">
       <body>{children}</body>
+      <Script 
+        src="https://tally.so/widgets/embed.js" 
+        strategy="afterInteractive"
+      />
     </html>
   )
 }
