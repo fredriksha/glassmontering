@@ -8,23 +8,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'adelie': {
-          navy: '#223243',
-          'navy-light': '#2d4358',
-          'navy-dark': '#1a2733',
-          green: '#1fae5c',
-          'green-light': '#25c96a',
-          'green-dark': '#189a4e',
-          'green-50': '#edfdf3',
-          'green-100': '#d4f9e2',
-          'green-200': '#a8f2c5',
+        navy: '#223243',
+        ink: '#1A2330',
+        paper: '#FBFBF9',
+        stone: '#F3F3EF',
+        glass: {
+          DEFAULT: '#1FAE5C',
+          dark: '#189A4E',
+          light: '#25C96A',
         },
       },
       fontFamily: {
         sans: ['Inter', 'Helvetica', 'Arial', 'sans-serif'],
+        serif: ['"Fraunces"', 'Georgia', 'serif'],
+      },
+      letterSpacing: {
+        brand: '0.18em',
+        'brand-tight': '0.12em',
       },
     },
   },
   plugins: [],
 }
-

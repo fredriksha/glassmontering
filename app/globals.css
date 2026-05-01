@@ -1,6 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --paper: #FBFBF9;
+  --stone: #F3F3EF;
+  --navy: #223243;
+  --ink: #1A2330;
+  --glass: #1FAE5C;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--paper);
+  scroll-behavior: smooth;
+}
+
+/* Default scroll-margin so fixed-header anchor jumps land below the bar */
+[id] {
+  scroll-margin-top: 84px;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Subtle grid texture used as backdrop in select sections */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(34, 50, 67, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34, 50, 67, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Stronger grid for the hero — more visible, with mouse-following highlight.
+   Uses CSS vars --mx/--my (px from top-left of the layer) set by JS. */
+.hero-grid {
+  --mx: 50%;
+  --my: 30%;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(34, 50, 67, 0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34, 50, 67, 0.10) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image:
+    radial-gradient(360px 360px at var(--mx) var(--my), black 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.25) 60%, transparent 80%),
+    linear-gradient(to bottom, black 0%, rgba(0,0,0,0.55) 60%, transparent 100%);
+  mask-image:
+    radial-gradient(360px 360px at var(--mx) var(--my), black 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.25) 60%, transparent 80%),
+    linear-gradient(to bottom, black 0%, rgba(0,0,0,0.55) 60%, transparent 100%);
+  -webkit-mask-composite: source-over;
+  mask-composite: add;
+}
+
+/* The accent dot that follows the cursor over the hero grid. */
+.hero-glow {
+  --mx: 50%;
+  --my: 30%;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(220px 220px at var(--mx) var(--my), rgba(31, 174, 92, 0.18), rgba(31, 174, 92, 0) 70%);
+  transition: background-position 80ms linear;
+}
+
+/* Hairline divider that picks up the brand mark feel */
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(34, 50, 67, 0.18) 20%,
+    rgba(34, 50, 67, 0.18) 80%,
+    transparent
+  );
+}
