@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 
 /**
  * The brand mark — two railing posts meeting under a horizontal line,
@@ -338,23 +339,30 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Gallery — large featured + two smaller. Intentional even without photos. */}
+          {/* Gallery — large featured + two smaller */}
           <div className="grid grid-cols-6 gap-3 sm:gap-4">
-            <ProjectFrame
-              span="col-span-6 md:col-span-4 aspect-[4/3] md:aspect-[5/4]"
-              tone="navy"
+            <ProjectImage
+              src="/images/terrasse-solnedgang.jpg"
+              alt="Ferdigmontert glassrekkverk på terrasse med utsikt over havn i solnedgang"
+              span="col-span-6 md:col-span-4 aspect-[4/3] md:aspect-[6/5]"
               caption="Glassrekkverk · Terrasse"
+              priority
+              sizes="(min-width: 768px) 64vw, 100vw"
             />
             <div className="col-span-6 md:col-span-2 grid grid-cols-2 md:grid-cols-1 gap-3 sm:gap-4">
-              <ProjectFrame
-                span="aspect-square md:aspect-[5/4]"
-                tone="stone"
-                caption="T-Railing · Trapp"
+              <ProjectImage
+                src="/images/terrasse-himmel.jpg"
+                alt="Glassrekkverk med kurvstoler mot blå himmel"
+                span="aspect-square md:aspect-[6/5]"
+                caption="Detalj · Glass mot himmel"
+                sizes="(min-width: 768px) 32vw, 50vw"
               />
-              <ProjectFrame
-                span="aspect-square md:aspect-[5/4]"
-                tone="glass"
-                caption="Detalj · Innfesting"
+              <ProjectImage
+                src="/images/glass-montering-havn.jpg"
+                alt="Glassrekkverk under montering med utsikt over havn"
+                span="aspect-square md:aspect-[6/5]"
+                caption="Under montering · Havneutsikt"
+                sizes="(min-width: 768px) 32vw, 50vw"
               />
             </div>
           </div>
@@ -559,36 +567,36 @@ export default function Home() {
   )
 }
 
-/** Decorative project frame used in the gallery — looks intentional with or without an image. */
-function ProjectFrame({
+/** Project image frame — fills its slot with an optimized photo + caption overlay. */
+function ProjectImage({
+  src,
+  alt,
   span,
-  tone,
   caption,
+  sizes,
+  priority = false,
 }: {
+  src: string
+  alt: string
   span: string
-  tone: 'navy' | 'stone' | 'glass'
   caption: string
+  sizes: string
+  priority?: boolean
 }) {
-  const toneClass =
-    tone === 'navy'
-      ? 'bg-navy text-paper/60'
-      : tone === 'glass'
-      ? 'bg-glass/15 text-navy/60'
-      : 'bg-stone text-navy/55'
-
-  const markStroke = tone === 'navy' ? '#FBFBF9' : '#223243'
-  const markAccent = tone === 'navy' ? '#1FAE5C' : tone === 'glass' ? '#1FAE5C' : '#1FAE5C'
-
   return (
-    <figure
-      className={`group relative overflow-hidden ${span} ${toneClass} bg-grid-frame transition-all`}
-    >
-      <div className="absolute inset-0 flex items-center justify-center opacity-25 group-hover:opacity-40 transition-opacity">
-        <BrandMark className="w-1/2 max-w-[180px] h-auto" stroke={markStroke} accent={markAccent} />
-      </div>
-      <figcaption className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[10px] font-mono tracking-[0.18em] uppercase">
-        <span>{caption}</span>
-        <span className="opacity-60">Bilde kommer</span>
+    <figure className={`group relative overflow-hidden bg-stone ${span}`}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+      />
+      {/* gradient for caption legibility */}
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent pointer-events-none" />
+      <figcaption className="absolute bottom-3 left-4 right-4 text-[10px] font-mono tracking-[0.18em] uppercase text-paper/95">
+        {caption}
       </figcaption>
     </figure>
   )
